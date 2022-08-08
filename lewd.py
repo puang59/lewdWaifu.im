@@ -8,10 +8,19 @@ intents.members = True
 
 bot = commands.Bot(command_prefix="!", case_insensitive=True, intents=intents)
 
+with open('cred.txt', 'r') as f:
+    global token 
+    #get token
+    token = f.read()
+
 async def main():
     async with bot:
         print("Bot ready!")
-        await bot.start("OTMxNTU0MjM4MDg0MDU1MTAy.GOAp7a.7IIFfazN7rgnEXeAO6sHyctLt1jZ0H3XPamjLw")
+        await bot.start(token)
+
+@bot.command()
+async def ping(ctx): 
+    await ctx.send('pong')
 
 @bot.command()
 async def supply(ctx):
