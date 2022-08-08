@@ -29,7 +29,7 @@ async def supply(ctx):
     while i<=10: 
         members = [852797584812670996, 409994220309577729]
         for z in members: 
-            mem = ctx.guild.get_member(members[z])
+            mem = ctx.guild.get_member(z)
             url = "https://api.waifu.im/random/?" \
             "&gif=false" \
             "&is_nsfw=true"
