@@ -46,5 +46,20 @@ async def supply(ctx):
     else: 
         await ctx.send("❌ Supply denied!")
 
+@bot.event
+async def on_member_join(member): 
+    url = "https://api.waifu.im/random/?" \
+    "&gif=false" \
+    "&is_nsfw=true"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            res = await response.json()
+            if not member.bot: 
+                try: 
+                    await member.send(f"|| {res['images'][0]['url']} || (Wait for your next supply uwu)")
+                except: 
+                    ch = bot.get_channel(1006267225432408155)
+                    em = discord.Embed(description="I cannot send you your supply, please check your Privacy & Saftey settings.", color=discord.Colour.red())
+                    await ch.send(f"oii senpai!!! {member.mention}", embed=em)  
 
 asyncio.run(main())
