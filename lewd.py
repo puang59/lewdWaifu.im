@@ -30,7 +30,7 @@ async def supply(ctx):
                 await mem1.send(f"|| {res['images'][0]['url']} ||")
                 await mem2.send(f"|| {res['images'][0]['url']} ||") 
 
-        await asyncio.sleep(5)
+        await asyncio.sleep(43200)
 
 
 asyncio.run(main())
