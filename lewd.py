@@ -1,6 +1,7 @@
 import discord 
 import aiohttp
 import asyncio
+import os
 from discord.ext import commands
 
 intents = discord.Intents.all()
@@ -8,10 +9,11 @@ intents.members = True
 
 bot = commands.Bot(command_prefix="!", case_insensitive=True, intents=intents)
 
-with open('cred.txt', 'r') as f:
-    global token 
-    token = f.read()
+# with open('cred.txt', 'r') as f:
+#     global token 
+#     token = f.read()
 
+token = os.environ['TOKEN']
 async def main():
     async with bot:
         print("Bot ready!")
