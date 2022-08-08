@@ -1,5 +1,6 @@
 # lewdWaifu.im
-Simple python script to supply you lewd anime pictures directly to your discord every given time ><
+Simple python script to supply you lewd anime pictures directly to your discord every given time >< <br> 
+It uses [Waifu.im](https://waifu.im/) API to fetch lewd images.
 
 ## Get Started 
 ### Create Discord Bot Application
