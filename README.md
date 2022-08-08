@@ -3,6 +3,7 @@ Simple python script to supply you lewd anime pictures directly to your discord 
 It uses [Waifu.im](https://waifu.im/) API to fetch lewd images.
 
 ## Get Started 
+Use `lewd.py` and ignore `massSupply.py`
 ### Create Discord Bot Application
 Go do [discord developer portal](https://discord.com/developers) and create a discord bot application.
 Refer to [this blog](https://www.makeuseof.com/how-to-make-discord-bot/) (Only follow the part till application creation)
@@ -36,3 +37,7 @@ await mem.send(f"{res['images'][0]['url']}")
 ### Preview 
 
 <img src="https://cdn.discordapp.com/attachments/990523749721833532/1006240726868316272/Screenshot_2022-08-08_at_10.10.59_PM.png" width="40%"><h6>(No I wont reveal the image, go away)</h6>
+
+<hr> 
+
+Join [Discord Server](https://discord.gg/Hcg4HThZAn) for supplies or bot demo.
