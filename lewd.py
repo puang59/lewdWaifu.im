@@ -20,10 +20,6 @@ async def main():
         await bot.start(token)
 
 @bot.command()
-async def ping(ctx): 
-    await ctx.send('pong')
-
-@bot.command()
 async def supply(ctx):
     i = 0
     while i<=10: 
