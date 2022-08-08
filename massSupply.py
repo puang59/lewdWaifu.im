@@ -42,7 +42,7 @@ async def supply(ctx):
                                 em = discord.Embed(description="I cannot send you your supply, please check your Privacy & Saftey settings.", color=discord.Colour.red())
                                 await ch.send(f"oii senpai!!! {member.mention}", embed=em)
 
-            await asyncio.sleep(43200)
+            await asyncio.sleep(3600)
     else: 
         await ctx.send("❌ Supply denied!")
 
