@@ -21,7 +21,7 @@ async def main():
 
 @bot.command()
 async def supply(ctx):
-    if ctx.member.id == 852797584812670996:
+    if ctx.message.author.id == 852797584812670996:
         await ctx.send("✅ Supply started!")
         i = 0
         while i < 10: 
