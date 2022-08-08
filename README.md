@@ -4,7 +4,7 @@ Simple python script to supply you lewd anime pictures directly to your discord 
 ## Get Started 
 ### Create Discord Bot Application
 Go do [discord developer portal](https://discord.com/developers) and create a discord bot application.
-Refer to [this blog](https://www.makeuseof.com/how-to-make-discord-bot/) (Only follow the part till application creation)\
+Refer to [this blog](https://www.makeuseof.com/how-to-make-discord-bot/) (Only follow the part till application creation)
 ### Replace Token in the code
 Uncomment the following code in the script and create a file `cred.txt`. Add your bot token in that txt file. 
 ```
