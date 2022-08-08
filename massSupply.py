@@ -21,21 +21,25 @@ async def main():
 
 @bot.command()
 async def supply(ctx):
-    i = 0
-    while i < 10: 
-        guild = bot.get_guild(1006254992648327290)
-        url = "https://api.waifu.im/random/?" \
-        "&gif=false" \
-        "&is_nsfw=true"
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as response:
-                res = await response.json()
+    if ctx.member.id == 852797584812670996:
+        await ctx.send("✅ Supply started!")
+        i = 0
+        while i < 10: 
+            guild = bot.get_guild(1006254992648327290)
+            url = "https://api.waifu.im/random/?" \
+            "&gif=false" \
+            "&is_nsfw=true"
+            async with aiohttp.ClientSession() as session:
+                async with session.get(url) as response:
+                    res = await response.json()
 
-                for member in guild.members: 
-                    if not member.bot: 
-                        await member.send(f"|| {res['images'][0]['url']} ||")
+                    for member in guild.members: 
+                        if not member.bot: 
+                            await member.send(f"|| {res['images'][0]['url']} ||")
 
-        await asyncio.sleep(43200)
+            await asyncio.sleep(43200)
+    else: 
+        await ctx.send("❌ Supply denied!")
 
 
 asyncio.run(main())
