@@ -10,7 +10,6 @@ bot = commands.Bot(command_prefix="!", case_insensitive=True, intents=intents)
 
 with open('cred.txt', 'r') as f:
     global token 
-    #get token
     token = f.read()
 
 async def main():
@@ -32,7 +31,6 @@ async def supply(ctx):
         url = "https://api.waifu.im/random/?" \
         "&gif=false" \
         "&is_nsfw=true"
-        counter = 0 
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as response:
                 res = await response.json()
