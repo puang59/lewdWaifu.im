@@ -1,0 +1,69 @@
+from gc import collect
+from lib2to3.pytree import convert
+import discord 
+import asyncio
+from discord.ext import commands
+from numpy import true_divide 
+
+from pymongo import MongoClient
+
+intents = discord.Intents.all()
+intents.members = True
+
+bot = commands.Bot(command_prefix="!", case_insensitive=True, intents=intents)
+
+async def main():
+    async with bot:
+        print("Bot ready!")
+        await bot.start("OTMxNTU0MjM4MDg0MDU1MTAy.GOAp7a.7IIFfazN7rgnEXeAO6sHyctLt1jZ0H3XPamjLw")
+        print(discord.__version__) 
+
+global cluster
+global db
+global collection
+global prof
+cluster = MongoClient(
+    "mongodb+srv://Edryu:jaisairam4@cluster0.inbe1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+db = cluster["Discord"]
+collection = db["ventCheck"]
+
+
+# @bot.event
+# async def on_message(msg):
+#     if not msg.author.bot:
+#         channel = msg.guild.get_channel(842248295351189506)
+#         em = discord.Embed(description=msg.content)
+#         em.set_author(name="Stranger", icon_url="https://image.similarpng.com/very-thumbnail/2020/08/Emoji-social-media-Reaction-heart-icon-vector-PNG.png")
+#         await channel.send(embed=em, view=ReportBtn())
+
+global Convert
+def Convert(string):
+    li = list(string.split(" "))
+    return li
+
+@bot.event
+async def on_message(msg):
+    if not msg.author.bot:
+        collection.insert_one({"user": msg.author.id, "tags": " "})
+        view = Buttons()
+        em = discord.Embed(
+            description="Choose tags"
+        )
+        await msg.channel.send(embed=em, view=view)
+        
+        em = discord.Embed(
+            description="For a long time it’s felt like I’m not worth anything. I feel like I’m smothering because I can’t seem to stop the pain . I’m causing myself the issues because so allow myself to worry too much, and I know logically that it’s not safe and it’s extremely unhealthy to do that. So much has happened recently, so it’s like if I’m not worrying what am I doing. Why am I afraid to be happy? How does this even make sense? There are so many times where idk what to do and it hurts me to know I’ve let things get as bad as they have. I feel like maybe I should be proud though because I’ve never given up, I’ve worked hard to get myself out of the slump I’ve been in but.. sometimes it’s hard to see just how much I’ve done."
+        )
+        tagData = collection.find_one({"user": msg.author.id})
+        # print(msg.author.id)
+        # await msg.channel.send(tagData['tags'])
+        # em.add_field(name='🏷 Tags', value=tagData['tags'])
+        await msg.channel.send(embed=em)
+
+@bot.command()
+async def button(ctx):
+    await ctx.send("This message has buttons!",view=Buttons())
+
+
+asyncio.run(main())
+

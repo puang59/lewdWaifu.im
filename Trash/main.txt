@@ -1,0 +1,65 @@
+from gc import collect
+from lib2to3.pytree import convert
+from urllib import response
+import discord 
+import asyncio
+from discord.ext import commands
+from numpy import true_divide 
+from discord import Embed, Spotify
+
+from pymongo import MongoClient
+
+intents = discord.Intents.all()
+intents.members = True
+
+bot = commands.Bot(command_prefix="!", case_insensitive=True, intents=intents)
+
+async def main():
+    async with bot:
+        print("Bot ready!")
+        await bot.start("OTMxNTU0MjM4MDg0MDU1MTAy.GOAp7a.7IIFfazN7rgnEXeAO6sHyctLt1jZ0H3XPamjLw")
+        print(discord.__version__) 
+
+global cluster
+global db
+global collection
+global prof
+cluster = MongoClient(
+    "mongodb+srv://Edryu:jaisairam4@cluster0.inbe1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+db = cluster["Discord"]
+collection = db["ventCheck"]
+
+# @bot.event
+# async def on_message(message): 
+#     channel = message.channel
+#     await channel.create_thread(name=f"{message.author.discriminator}-{message.author.name}", message=message, auto_archive_duration=1440, reason=None)
+global cofirm
+class tagButtons(discord.ui.View):
+    def __init__(self, *, timeout=180):
+        super().__init__(timeout=timeout)
+    @discord.ui.button(label="Btn",style=discord.ButtonStyle.grey, disabled=False)
+    async def neutral_button(self, interaction:discord.Interaction, button:discord.ui.Button):
+        button.disabled=True
+        button.label="Btn"
+        msg = await interaction.response.send_message("trigg")
+
+        await interaction.original_message.add_reaction('👍')
+@bot.command()
+async def vim(ctx):
+    await ctx.send("This is command", view=tagButtons())
+
+@bot.command()
+async def s(ctx, user: discord.Member=None):
+    user = user or ctx.author
+    for activity in user.activities:
+        if isinstance(activity, Spotify):
+            embed = discord.Embed(
+                title=f"**{activity.title}** - {activity.artist}", 
+                description=f"{activity.duration}\n{activity.artists}\n{activity.album}",
+                color=activity.color
+            )
+            embed.set_thumbnail(url=f"{activity.album_cover_url}")
+            await ctx.send(embed=embed)
+
+asyncio.run(main())
+
