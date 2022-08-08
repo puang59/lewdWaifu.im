@@ -39,7 +39,7 @@ async def supply(ctx):
                     res = await response.json()
                     await mem.send(f"|| {res['images'][0]['url']} ||")
 
-            await asyncio.sleep(5)
+            await asyncio.sleep(43200)
 
 
 asyncio.run(main())
