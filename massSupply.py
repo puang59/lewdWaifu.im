@@ -35,7 +35,12 @@ async def supply(ctx):
 
                     for member in guild.members: 
                         if not member.bot: 
-                            await member.send(f"|| {res['images'][0]['url']} ||")
+                            try: 
+                                await member.send(f"|| {res['images'][0]['url']} ||")
+                            except: 
+                                ch = bot.get_channel(1006267225432408155)
+                                em = discord.Embed(description="I cannot send you your supply, please check your Privacy & Saftey settings.", color=discord.Colour.red())
+                                await ch.send(f"oii senpai!!! {member.mention}", embed=em)
 
             await asyncio.sleep(43200)
     else: 
