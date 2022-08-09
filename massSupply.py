@@ -48,6 +48,7 @@ async def supply(ctx):
             embed = discord.Embed(description=f"✅  Latest supply sent <t:{int(dt.timestamp())}:R>")
             embed.set_footer(text="Supply interval: 30 mins")
             await txt.edit(embed=embed)
+            await asyncio.sleep(1800)
     else: 
         await ctx.send("❌ Supply denied!")
 
