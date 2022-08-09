@@ -45,7 +45,7 @@ async def supply(ctx):
             channel = bot.get_channel(1006254993227137188)
             txt = await channel.fetch_message(1006503837428883457)
             dt = datetime.now()
-            embed = discord.Embed(description=f"✅ Latest supply sent <t:{dt.timestamp()}:R>")
+            embed = discord.Embed(description=f"✅  Latest supply sent <t:{int(dt.timestamp())}:R>")
             embed.set_footer(text="Supply interval: 30 mins")
             await txt.edit(embed=embed)
             await asyncio.sleep(1800)
