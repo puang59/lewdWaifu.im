@@ -23,6 +23,8 @@ async def main():
 @bot.command()
 async def supply(ctx):
     if ctx.message.author.id == 852797584812670996:
+        em = discord.Embed(description="Supplying")
+        await ctx.send(embed=em)
         i = 0
         while i < 10: 
             guild = bot.get_guild(1006254992648327290)
@@ -42,12 +44,6 @@ async def supply(ctx):
                                 em = discord.Embed(description="I cannot send you your supply, please check your Privacy & Saftey settings.", color=discord.Colour.red())
                                 await ch.send(f"oii senpai!!! {member.mention}", embed=em)
 
-            channel = bot.get_channel(1006254993227137188)
-            txt = await channel.fetch_message(1006503837428883457)
-            dt = datetime.now()
-            embed = discord.Embed(description=f"✅  Latest supply sent <t:{int(dt.timestamp())}:R>")
-            embed.set_footer(text="Supply interval: 30 mins")
-            await txt.edit(embed=embed)
             await asyncio.sleep(1800)
     else: 
         await ctx.send("❌ Supply denied!")
