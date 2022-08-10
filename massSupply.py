@@ -2,6 +2,7 @@ import discord
 import aiohttp
 import asyncio
 import os
+import random
 from datetime import datetime
 from discord.ext import commands
 
@@ -26,17 +27,21 @@ async def supply(ctx):
         i = 0
         while i < 10: 
             guild = bot.get_guild(1006254992648327290)
-            url = "https://api.waifu.im/random/?" \
+            wpic = "https://api.waifu.pics/nsfw/waifu" #waifu.pics url
+            wim = "https://api.waifu.im/random/?" \
             "&gif=false" \
-            "&is_nsfw=true"
+            "&is_nsfw=true" # waifu.im url
+            url = random.choice([wim, wpic])
             async with aiohttp.ClientSession() as session:
                 async with session.get(url) as response:
                     res = await response.json()
-
                     for member in guild.members: 
                         if not member.bot: 
                             try: 
-                                await member.send(f"|| {res['images'][0]['url']} ||")
+                                try: 
+                                    await member.send(f"|| {res['images'][0]['url']} ||") #waifu.im
+                                except: 
+                                    await member.send(f"|| {res['url']} ||") #waifu.pics
                             except: 
                                 ch = bot.get_channel(1006267225432408155)
                                 em = discord.Embed(description="I cannot send you your supply, please check your Privacy & Saftey settings.", color=discord.Colour.red())

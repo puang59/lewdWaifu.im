@@ -26,6 +26,14 @@ async def ts(ctx):
     em = discord.Embed(description=f"<t:{int(dt.timestamp())}:R>")
     await ctx.send(embed=em)
 
+@bot.command()
+async def wp(ctx): 
+    url = "https://api.waifu.pics/nsfw/waifu"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response: 
+            res = await response.json()
+            await ctx.send(f"|| {res['url']} ||")
+
 @bot.event
 async def on_command_error(ctx, error):
     em = discord.Embed(description=f"Command: `{ctx.command}`\n```{error}```")
