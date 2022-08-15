@@ -39,12 +39,12 @@ async def supply(ctx):
                     for member in guild.members: 
                         if not member.bot: 
                             if not member.id == 852797584812670996 or not member.id == 409994220309577729:#removing myself and deory
-                                 try: 
+                                try: 
                                     try: 
                                         await member.send(f"|| {res['images'][0]['url']} ||") #waifu.im
-                                     except: 
+                                    except: 
                                         await member.send(f"|| {res['url']} ||") #waifu.pics
-                                 except: 
+                                except: 
                                     ch = bot.get_channel(1006267225432408155)
                                     em = discord.Embed(description="I cannot send you your supply, please check your Privacy & Saftey settings.", color=discord.Colour.red())
                                     await ch.send(f"oii senpai!!! {member.mention}", embed=em)
