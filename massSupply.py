@@ -24,6 +24,7 @@ async def main():
 @bot.command()
 async def supply(ctx):
     if ctx.message.author.id == 852797584812670996:
+        await ctx.message.delete()
         i = 0
         while i < 10: 
             guild = bot.get_guild(1006254992648327290)
