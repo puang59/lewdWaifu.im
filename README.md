@@ -1,6 +1,6 @@
 # lewdWaifu.im
 Simple python script to supply you lewd anime pictures directly to your discord every given time >< <br> 
-It uses [Waifu.im](https://waifu.im/) API to fetch lewd images.
+It uses [Waifu.im](https://waifu.im/) and [Waifu.pics](https://waifu.pics) API to fetch lewd images.
 
 ## Get Started 
 Use `lewd.py` and ignore `massSupply.py`
@@ -14,7 +14,8 @@ Uncomment the following code in the script and create a file `cred.txt`. Add you
 #     global token 
 #     token = f.read()
 ```
-Remove or Comment `token = os.environ['TOKEN']`. Now your bot is ready to function on discord. 
+Remove or Comment `token = os.environ['TOKEN']`. Now your bot is ready to function on discord. <br>
+(You can even use envs for your tokens if you dont want to hardcode/use txt file)
 ### Add member id
 Replace the ids in `member` list with your id. (You can add multiple discord ids and the bot will supply lewd to every member in `member` list)
 ```
