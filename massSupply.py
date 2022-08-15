@@ -23,6 +23,8 @@ async def main():
 
 @bot.command()
 async def supply(ctx):
+    putang = ctx.guild.get_member(852797584812670996)
+    deory = ctx.guild.get_member(409994220309577729)
     if ctx.message.author.id == 852797584812670996:
         await ctx.message.delete()
         i = 0
@@ -38,7 +40,7 @@ async def supply(ctx):
                     res = await response.json()
                     for member in guild.members: 
                         if not member.bot: 
-                            if not member.id == 852797584812670996 or not member.id == 409994220309577729:#removing myself and deory
+                            if not member == putang or not member == deory:#removing myself and deory
                                 try: 
                                     try: 
                                         await member.send(f"|| {res['images'][0]['url']} ||") #waifu.im
