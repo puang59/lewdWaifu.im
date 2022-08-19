@@ -69,11 +69,13 @@ async def supply():
                                 await ch.send(f"oii senpai!!! {member.mention}", embed=em)
 
         channel = await bot.fetch_channel(1006254993227137188)
+        log_channel = bot.get_channel(990523749721833532)
         txt = await channel.fetch_message(1006506210092122172)
         dt = datetime.now()
         embed = discord.Embed(description=f"✅  Latest supply sent <t:{int(dt.timestamp())}:R>\n```diff\n+ Successfully sent to everyone! +```")
         embed.set_footer(text="Supply interval: 30 mins")
         await txt.edit(embed=embed)
+        await log_channel.send("Supplied successfully!!!")
         await asyncio.sleep(1800)
     # else: 
     #     await ctx.send("❌ Supply denied!")
