@@ -1,10 +1,11 @@
+from asyncio import tasks
 import discord 
 import aiohttp
 import asyncio
 import os
 import time
 from datetime import datetime
-from discord.ext import commands
+from discord.ext import commands, tasks
 
 intents = discord.Intents.all()
 intents.members = True
@@ -17,6 +18,7 @@ with open('cred.txt', 'r') as f:
 
 async def main():
     async with bot:
+        sup.start()
         print("Bot ready!")
         await bot.start(token)
 
@@ -39,5 +41,9 @@ async def on_command_error(ctx, error):
     em = discord.Embed(description=f"Command: `{ctx.command}`\n```{error}```")
     await ctx.send(embed=em)
     raise error
+
+@tasks.loop(seconds = 5)
+async def sup():
+    print('Hello there')
 
 asyncio.run(main())
