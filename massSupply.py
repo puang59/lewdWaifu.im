@@ -43,6 +43,7 @@ async def supply():
     # if ctx.message.author.id == 852797584812670996:
     #     await ctx.message.delete()
     guild = bot.get_guild(1006254992648327290)
+    pause_role = guild.get_role(1010788120511381524)
     i = 0
     while i < 10: 
         wpic = "https://api.waifu.pics/nsfw/waifu" #waifu.pics url
@@ -55,9 +56,7 @@ async def supply():
                 res = await response.json()
                 for member in guild.members: 
                     if not member.bot: 
-                        if member.id == 852797584812670996 or member.id == 409994220309577729:
-                            print(".")
-                        else:
+                        if not pause_role in member.roles:
                             try: 
                                 try: 
                                     await member.send(f"|| {res['images'][0]['url']} ||") #waifu.im
@@ -68,7 +67,7 @@ async def supply():
                                 em = discord.Embed(description="I cannot send you your supply, please check your Privacy & Saftey settings.", color=discord.Colour.red())
                                 await ch.send(f"oii senpai!!! {member.mention}", embed=em)
 
-        channel = await bot.fetch_channel(1006254993227137188)
+        channel = bot.get_channel(1006254993227137188)
         log_channel = bot.get_channel(990523749721833532)
         txt = await channel.fetch_message(1006506210092122172)
         dt = datetime.now()
@@ -96,7 +95,28 @@ async def on_member_join(member):
                     em = discord.Embed(description="I cannot send you your supply, please check your Privacy & Saftey settings.", color=discord.Colour.red())
                     await ch.send(f"oii senpai!!! {member.mention}", embed=em)  
 
-# @bot.command()
-# async def pause()
+@bot.command()
+async def pause(ctx): 
+    guild = bot.get_guild(1006254992648327290)
+    pause_role = guild.get_role(1010788120511381524)
+
+    if not pause_role in ctx.message.author.roles:
+        await ctx.message.author.add_roles(pause_role)
+        await ctx.message.add_reaction("✅")
+        await ctx.message.author.send("I have paused your supply! Use command `?unpause` in <#1006267225432408155> to continue supplies")
+    else: 
+        await ctx.send("I have already paused your supply!\nIf you want to unpause then use the command `?unpause`")
+
+@bot.command()
+async def unpause(ctx): 
+    guild = bot.get_guild(1006254992648327290)
+    pause_role = guild.get_role(1010788120511381524)
+
+    if pause_role in ctx.message.author.roles:
+        await ctx.message.author.remove_roles(pause_role)
+        await ctx.message.add_reaction('✅')
+        await ctx.message.author.send("I'll be sending you supplies!")
+    else: 
+        await ctx.message.add_reaction('✅')
 
 asyncio.run(main())
