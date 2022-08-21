@@ -11,7 +11,7 @@ from discord.ext import commands, tasks
 intents = discord.Intents.all()
 intents.members = True
 
-bot = commands.Bot(command_prefix="!", case_insensitive=True, intents=intents)
+bot = commands.Bot(command_prefix=["!","?"], case_insensitive=True, intents=intents)
 
 # with open('cred.txt', 'r') as f:
 #     global token 
@@ -95,5 +95,8 @@ async def on_member_join(member):
                     ch = bot.get_channel(1006267225432408155)
                     em = discord.Embed(description="I cannot send you your supply, please check your Privacy & Saftey settings.", color=discord.Colour.red())
                     await ch.send(f"oii senpai!!! {member.mention}", embed=em)  
+
+# @bot.command()
+# async def pause()
 
 asyncio.run(main())
