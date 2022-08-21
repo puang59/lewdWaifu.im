@@ -119,4 +119,8 @@ async def unpause(ctx):
     else: 
         await ctx.message.add_reaction('✅')
 
+@bot.command()
+async def ping(ctx):
+    await ctx.send('Pong! `{0}ms`'.format(round(bot.latency, 1)))
+
 asyncio.run(main())

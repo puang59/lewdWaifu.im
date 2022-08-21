@@ -18,7 +18,7 @@ with open('cred.txt', 'r') as f:
 
 async def main():
     async with bot:
-        sup.start()
+        # sup.start()
         print("Bot ready!")
         await bot.start(token)
 
@@ -42,8 +42,8 @@ async def on_command_error(ctx, error):
     await ctx.send(embed=em)
     raise error
 
-@tasks.loop(seconds = 5)
-async def sup():
-    print('Hello there')
+@bot.command()
+async def ping(ctx):
+    await ctx.send('Pong! `{0}ms`'.format(round(bot.latency, 1)))
 
 asyncio.run(main())
