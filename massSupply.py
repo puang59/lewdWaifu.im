@@ -123,4 +123,10 @@ async def unpause(ctx):
 async def ping(ctx):
     await ctx.send('Pong! `{0}ms`'.format(round(bot.latency, 1)))
 
+@bot.event
+async def on_command_error(ctx, error):
+    em = discord.Embed(description=f"Command: `{ctx.command}`\n```{error}```")
+    await ctx.send(embed=em)
+    raise error
+    
 asyncio.run(main())
