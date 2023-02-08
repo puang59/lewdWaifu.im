@@ -56,14 +56,15 @@ async def wp(ctx):
             res = await response.json()
             await ctx.send(f"|| {res['url']} ||")
 
+@bot.command()
+async def ping(ctx):
+    await ctx.send('Pong! `{0}ms`'.format(round(bot.latency, 1)))
+    
+## Basic Error handler ##
 @bot.event
 async def on_command_error(ctx, error):
     em = discord.Embed(description=f"Command: `{ctx.command}`\n```{error}```")
     await ctx.send(embed=em)
     raise error
-
-@bot.command()
-async def ping(ctx):
-    await ctx.send('Pong! `{0}ms`'.format(round(bot.latency, 1)))
-
+    
 asyncio.run(main())
